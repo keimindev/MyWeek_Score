@@ -1,0 +1,91 @@
+import React, {useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
+import styled from 'styled-components';
+
+
+const WeekDetail = () => {
+    let [count, setCount] = useState(5);
+    let [heart, setHeart] = useState('🤍');
+    let today = useParams();
+
+    const score_count = Array.from({ length: count}, (num, i) => i);
+
+    const getScore = (e) =>{
+        let currentNum = e.target.id;
+        setCount(currentNum)
+        setHeart('💜')
+        if(currentNum < 5){
+            let newNum = 5-currentNum;
+            for(let j=0; j<newNum; j++){
+                return (<li>🤍</li>);
+            }
+        }
+    }
+
+    return (
+        <>
+          <Daycontent>
+              <Title>
+                  <span>{today.day}</span>
+                  오늘 하루는?
+              </Title>
+              <Point>
+                  <ul>
+                      {score_count.map( (item,idx) => {
+                          return (
+                            <li id={idx + 1} onClick={getScore}>{heart}</li>
+                          )
+                      })}
+                  </ul>
+              </Point>
+              <Link to="/">
+              <Button>점수 남기기</Button>
+              </Link>
+          </Daycontent>
+        </>
+    )
+}
+
+const Daycontent = styled.div`
+ padding: 180px  20px;
+ text-align: center;
+`;
+
+const Title = styled.div`
+font-size: 30px;
+font- weight: 700;
+ span{
+     margin-right: 10px;
+     padding: 10px 15px;
+     border-radius: 15px;
+     background-color: #FFF844;
+     font-weight: 700;
+ }
+`;
+
+const Point = styled.div`
+padding: 50px 110px;
+ul{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    
+    li{
+        list-style: none;
+        font-size: 30px;
+        cursor:pointer;
+    }
+}`;
+
+const Button = styled.button`
+padding: 10px 20px;
+border: 0;
+outline: 0;
+border-radius: 10px;
+background-color: #FFF844;
+font-weight: 600;
+cursor:pointer;
+`;
+
+
+export default WeekDetail
