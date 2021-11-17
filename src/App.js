@@ -16,7 +16,7 @@ function App() {
 
 const Wrapper = styled.div`
  width: 500px;
- height: 75vh;
+ height: 700px;
  margin: 90px auto;
  border: 1px solid #ddd;
  border-radius: 10px;

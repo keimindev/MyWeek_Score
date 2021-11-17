@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Week from './Week';
 
 const Scorelist = ({day}) => {
     const { id, score, date} = day

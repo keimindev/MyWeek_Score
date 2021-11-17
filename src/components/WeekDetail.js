@@ -4,22 +4,20 @@ import styled from 'styled-components';
 
 
 const WeekDetail = () => {
-    let [count, setCount] = useState(5);
-    let [heart, setHeart] = useState('🤍');
+    let [count, setCount] = useState(0);
+    let [uncount, setUncount] = useState(5);
+    let [heart, setHeart] = useState("💜");
+    let [emptyHeart, setEmpty] = useState("🤍");
+
     let today = useParams();
 
     const score_count = Array.from({ length: count}, (num, i) => i);
+    const score_uncount = Array.from({ length: uncount}, (num, i) => i);
 
     const getScore = (e) =>{
         let currentNum = e.target.id;
-        setCount(currentNum)
-        setHeart('💜')
-        if(currentNum < 5){
-            let newNum = 5-currentNum;
-            for(let j=0; j<newNum; j++){
-                return (<li>🤍</li>);
-            }
-        }
+        setCount(currentNum);
+        setUncount(uncount - currentNum);
     }
 
     return (
@@ -34,6 +32,11 @@ const WeekDetail = () => {
                       {score_count.map( (item,idx) => {
                           return (
                             <li id={idx + 1} onClick={getScore}>{heart}</li>
+                          )
+                      })}
+                     {score_uncount.map( (item,idx) => {
+                          return (
+                            <li id={idx + 1} onClick={getScore}>{emptyHeart}</li>
                           )
                       })}
                   </ul>
