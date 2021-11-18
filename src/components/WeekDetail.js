@@ -16,8 +16,18 @@ const WeekDetail = () => {
 
     const getScore = (e) =>{
         let currentNum = e.target.id;
-        setCount(currentNum);
-        setUncount(uncount - currentNum);
+        if(count === 0 ){
+            setCount(currentNum);
+            setUncount(uncount - currentNum);
+        }else{
+            setCount(0)
+            setUncount(5)
+        }
+
+    }
+
+    const reset = () =>{
+        window.location.reload()
     }
 
     return (
@@ -44,6 +54,7 @@ const WeekDetail = () => {
               <Link to="/">
               <Button>점수 남기기</Button>
               </Link>
+              <Buttons onClick={reset}>점수 다시주기</Buttons>
           </Daycontent>
         </>
     )
@@ -88,7 +99,21 @@ border-radius: 10px;
 background-color: #FFF844;
 font-weight: 600;
 cursor:pointer;
+margin-right: 5px;
 `;
+
+const Buttons = styled.button`
+padding: 10px 20px;
+border: 0;
+outline: 0;
+color: #fff;
+border-radius: 10px;
+background-color: #6D27C1;
+font-weight: 600;
+cursor:pointer;
+margin-right: 5px;
+`;
+
 
 
 export default WeekDetail
